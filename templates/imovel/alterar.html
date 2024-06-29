@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block titulo %}Alterar Imovel{% endblock %}
+
+{% block principal %}
+<h1 class="display-6 text-white">Alterar Imovel</h1>
+<hr>
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id_imovel" value="{{imovel.id}}">
+    <div class="form-floating mb-3">
+        <input type="text" name="nome" id="nome" class="form-control"
+            placeholder=" " value="{{imovel.nome}}" required autofocus>
+        <label for="nome">Nome</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" name="preco" id="preco" class="form-control"
+            placeholder=" " value="{{imovel.preco}}" required autofocus>
+        <label for="preco">Preco</label>
+    </div>
+    
+    <div class=" d-flex justify-content-around align-items-center">
+
+        <div class="form-floating mb-3">
+            <select class="select-control" id="categoria" name="categoria" required>
+                <option class="text-black" value selected>Escolha uma categoria...</option>
+                <option class="text-black" value="1">Aluguel</option>
+                <option class="text-black" value="2">Venda</option>
+            </select>
+        </div>
+    
+        <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" role="switch"
+                id="destaque" name="destaque">
+            <label class="form-check-label text-white"
+                for="destaque">Destaque</label>
+        </div>
+
+    </div>
+
+    <div class="form-floating mb-3">
+        <textarea name="descricao" id="descricao" class="form-control" placeholder=" "
+            style="height: 120px" value="{{imovel.descricao}}" required autofocus>{{imovel.descricao}}</textarea>
+        <label for="descricao">Descrição</label>
+    </div>
+    <div class="col-12 mb-3">
+        <label for="arquivoImagem" class="form-label text-white">Selecione o Arquivo de Imagem</label>
+        <input class="form-control" type="file" id="arquivoImagem"
+            name="arquivoImagem" onchange="previewImage(event)" accept="image/jpeg">
+    </div>
+    <div class="mb-3">
+        {% set text = "Cancelar" %}
+        {% set href = "/imovel" %}
+        {% set classe = "btn-secondary" %}
+        {% include "includes/link.html" %}
+
+        {% set text = "Salvar" %}
+        {% set type = "submit" %}
+        {% set classe = "btn-success" %}
+        {% include "includes/button.html" %}
+    </div>
+</form>
+<div class="col-3">
+    <img id="preview" src="/static/img/imoveis/{{
+    '{:04d}'.format(imovel.id) }}.jpg" class="border border-2 rounded rounded-3p-2 w-100" />
+</div>
+<script>
+    function previewImage(event) {
+    let reader = new FileReader();
+    reader.onload = function () {
+    let preview = document.getElementById('preview');
+    preview.src = reader.result;
+    preview.classList.remove('d-none');
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+{% endblock %}

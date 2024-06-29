@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block titulo %}Excluir Imovel{% endblock %}
+
+{% block principal %}
+<h1 class="display-6 text-white">Excluir Imovel</h1>
+<hr>
+<p class="lead text-white">
+    Deseja realmente excluir o imovel <b>{{imovel.nome}}</b>?
+</p>
+<p>
+    <img src="/static/img/imoveis/{{ '{:04d}'.format(imovel.id)}}.jpg"
+        alt="{{imovel.nome}}" class="img-thumbnail" width="128">
+</p>
+<form method="post">
+    <input type="hidden" name="id_imovel" value="{{imovel.id}}">
+    <div>
+        {% set text = "Não" %}
+        {% set href = "/imovel" %}
+        {% set classe = "btn-success" %}
+        {% include "includes/link.html" %}
+        
+        {% set text = "Sim" %}
+        {% set type = "submit" %}
+        {% set classe = "btn-danger" %}
+        {% include "includes/button.html" %}
+    </div>
+</form>
+{% endblock %}

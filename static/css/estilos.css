@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(189, 163, 108);
+    /* background-image: linear-gradient(to right, #664d03 50%, #8d6a03 50%); */
+    background-size: 12px 100%;
+}
+
+.includes {
+    background-color:  rgb( 150, 130, 88);
+}
+
+.texto-3-linhas {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.primeira-centralizada tr>th:first-of-type,
+.primeira-centralizada tr>td:first-of-type {
+    width: 1%;
+    white-space: nowrap;
+    text-align: center;
+    padding: .25rem 1rem !important;
+}
+
+.ultima-centralizada tr>th:last-of-type,
+.ultima-centralizada tr>td:last-of-type {width: 1%;
+    white-space: nowrap;
+    text-align: center;
+    padding-left: .25rem 1rem !important;
+}
+
+.segunda-centralizada tr>th:nth-of-type(2),
+.segunda-centralizada tr>td:nth-of-type(2) {
+    width: 1%;
+    white-space: nowrap;
+    text-align: center;
+    padding: .25rem 1rem !important;
+}
+.terceira-centralizada tr>th:nth-of-type(3),
+.terceira-centralizada tr>td:nth-of-type(3) {
+    width: 1%;
+    white-space: nowrap;
+    text-align: center;
+    padding: .25rem 1rem !important;
+}
+tr>td {
+    vertical-align: middle !important;
+}
+
+tr:nth-child(even) {
+    background-color: #252525 !important;
+}
+
+tr:nth-child(odd) {
+    background-color: #282828 !important;
+}
+
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    width: 200px;
+  }
+  
+/* Escondendo o select original */
+.custom-select select {
+    display: none;
+}
+
+/* Estilizando o item selecionado */
+.select-selected {
+    background-color: DodgerBlue;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+}
+
+/* Estilizando os itens (opções) */
+.select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}

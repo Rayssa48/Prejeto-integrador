@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/lib/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/lib/bootstrap-icons/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="/static/css/estilos.css">
+        <link rel="shortcut icon" href="/static/img/Design_sem_nome.png" type="image/xicon">
+        <title>
+        Sanches imóveis ::
+        {% block titulo %}{% endblock %}
+        </title>
+    </head>       
+
+    <body class="d-flex flex-column min-vh-100">
+        <nav class="includes navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center text-white" href="/">
+                    <img src="/static/img/Design_sem_nome.png"
+                        alt="Logotipo"  class="img-fluid">
+                    <h3 class="mx-5 align-text-center">Sanches imóveis</h3>
+                </a>
+                <button class="navbar-toggler bg-secondary bg-opacity-50 text-white" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarPrincipal"
+                    aria-controls="navbarPrincipal" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class=" d-flex align-items-center justify-content-center text-white" ><i class="bi bi-list"></i></span>
+                    
+                </button>
+                <div class="collapse navbar-collapse justify-content-end text-white"
+                    id="navbarPrincipal">
+                    <div class="navbar-nav">
+                        <a
+                            class="nav-link text-center text-white {{'active' if request.url.path == '/'}}"
+                            href="/">Principal</a>
+                        <a
+                        class="nav-link text-center text-white {{'active' if request.url.path == '/'}}"
+                        href="/alugueis">Alugueis</a>
+
+                        <a
+                            class="nav-link text-center text-white {{'active' if request.url.path == '/'}}" 
+                            href="/avenda">Á venda</a>
+
+                        {% if not usuario: %}
+                            <a
+                                class="nav-link text-center text-white {{'active' if request.url.path == '/usuario/novo'}}"
+                                href="/usuario/novo">Criar Conta</a>
+
+                            <a
+                                class="nav-link text-center text-white {{'active' if request.url.path == '/login'}}"
+                                href="/login">Entrar</a>
+                            {% else: %}
+                            
+                                {% if usuario.admin: %}
+                                <a
+                                    class="nav-link text-center text-white {{'active' if request.url.path == '/imovel/'}}"
+                                    href="/imovel">Imóveis</a>
+                                <a
+                                    class="nav-link text-center text-white {{'active' if request.url.path == '/usuario/'}}"
+                                    href="/usuario">Usuários</a>
+                                {% endif %}
+                            <a class="nav-link text-center text-danger {{'active' if request.url.path == '/arearestrita'}}"
+                                href="/arearestrita">Área Restrita</a>
+                            <a
+                                class="nav-link text-center text-white {{'active' if request.url.path == '/logout'}}"
+                                href="/logout">Sair</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        </nav>
+        {% include "includes/mensagem.html" with context %}
+        <main class="container my-4">
+            {% block principal %}
+            {% endblock %}
+        </main>
+        <footer class="includes p-3 text-center text-white mt-auto">
+            <div class="col-6 offset-3">
+                <p class="small m-0">
+                        <span class="small">Este site é resultado do trabalho final
+                            da disciplina de <b>Programação para a Web</b> do Curso Técnico em
+                            Informática do Ifes Campus Cachoeiro, ministrada pelo Prof. Ricardo Maroquio
+                            ao longo do segundo semestre de 2024.</span><br>
+                            Desenvolvido por:<br>
+                        <b>Rayssa Sanches Vaillant</b><br>
+                            Copyright &copy; 2024<br>
+                            Todos os direitos reservados
+                </p>
+            </div>
+        </footer>
+    <script src="/static/lib/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    </body>
+</html>
